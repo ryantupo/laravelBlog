@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostsController extends Controller
 {
@@ -13,7 +14,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('blog.index');
+        return view('blog.index')
+        ->with('posts', Post::orderBy('updated_at','DESC')->get());
     }
 
     /**
@@ -82,3 +84,24 @@ class PostsController extends Controller
         //
     }
 }
+
+
+//planning endpoints
+
+// create - 
+// /blog/create
+
+// read -
+// /blog
+
+// update - PUT or PATCH 
+// /blog/{slug or id}
+
+// Delete - DELETE
+// /blog/{slug or id}
+
+// show - GET
+// /blog/{slug or id}
+
+// edit - GET
+// /blog/{slug or id}/edit
