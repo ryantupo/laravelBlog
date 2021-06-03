@@ -14,12 +14,24 @@
 </div>
 
 
+@if (Auth::check())
+<div class="pt-15 w-4/5 m-auto">
+    <a 
+    class="bg-blue-500 uppercase bg-transparent text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl"
+    href="/blog/create">
+    Create Post
+</a>
+
+</div>
+    
+@endif
+
 @foreach ($posts as $post)
 
 <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
 
     <div>
-        <img src="{https://cdn.pixabay.com/photo/2014/05/02/21/49/laptop-336373_960_720.jpg}" width="700" alt="">
+        <img src="https://cdn.pixabay.com/photo/2014/05/02/21/49/laptop-336373_960_720.jpg" width="700" alt="">
     </div>
 
     <div>
@@ -29,8 +41,8 @@
     
     <span class="text-gray-500 ">
         By <span class="font-bold italic text-gray-800">
-            Ryan Tuplin Co.
-        </span>
+            {{ $post->user->name }}
+        </span>, Created on {{ date('jS M Y',strtotime($post->updated_at)) }}
 
     </span>
 
